@@ -10,9 +10,11 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {MagnifyingGlassIcon} from 'react-native-heroicons/outline'
+import {MapIcon} from 'react-native-heroicons/solid'
 
 export default function HomeScreen() {
   const [showSearch, toggleSearch] = useState(false);
+  const [locations, setLocations] = useState([1,2,3])
   return (
     <View style={styles.container}>
       <StatusBar style={styles.StatusBar} />
@@ -37,8 +39,26 @@ export default function HomeScreen() {
             <MagnifyingGlassIcon size={20} color={"white"}/>
           </TouchableOpacity>
         </View>
+        {
+          locations.length>0 && showSearch? (
+            <View style={styles.Location}>
+              {
+                locations.map((loc, index)=> {
+                  return(
+                    <TouchableOpacity
+                    key={index}
+                    style={styles.Location1}
+                    >
+                      <MapIcon size={20} color={'gray'} padding={3} style={{ marginRight: 10 }}/>
+                      <Text>London, United Kingdom</Text>
+                    </TouchableOpacity>
+                  )
+                })
+              }
+            </View>
+          ):null
+        }
       </SafeAreaView>
-      <Image />
     </View>
   );
 }
@@ -47,6 +67,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: "relative",
+    width:'100%'
   },
   StatusBar: {
     backgroundColor: "ligth",
@@ -86,5 +107,24 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 12,
     margin: 8,
+  },
+  Location:{
+    flexDirection:'column',
+    backgroundColor: '#E5E7EB',
+    borderRadius: 10,
+    marginLeft: 8,
+    marginRight: 8,
+    marginTop: 20,
+  },
+  Location1:{
+    flexDirection:'row',
+    alignItems:'center',
+    paddingHorizontal: 6,
+    paddingVertical: 10,
+    marginHorizontal: 4,
+    marginRight: 8,
+    borderBottomColor: '#D1D5DB',
+    borderBottomWidth: 1,
+    borderStyle: 'solid',
   }
 });
