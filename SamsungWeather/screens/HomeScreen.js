@@ -7,9 +7,10 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import {MagnifyingGlassIcon} from 'react-native-heroicons/outline'
+import {CalendarDaysIcon, MagnifyingGlassIcon} from 'react-native-heroicons/outline'
 import {MapIcon} from 'react-native-heroicons/solid'
 
 export default function HomeScreen() {
@@ -21,11 +22,6 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <StatusBar style={styles.StatusBar} />
-      <Image
-        blurRadius={70}
-        source={require("../assets/images/bg.png")}
-        style={styles.backgroundImage}
-      />
       <SafeAreaView style={styles.safeAreaView}>
         <View style={styles.statusBar1} />
         <View style={[styles.searchContainer, showSearch? {backgroundColor: `rgba(255, 255, 255, 0.2)`} : {backgroundColor:'transparent'}]}>
@@ -64,8 +60,152 @@ export default function HomeScreen() {
             </View>
           ):null
         }
+        <View style={styles.ForecastSection}>
+          <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', fontSize: 32 }}>
+            London
+            <Text style={{ color: '#D1D5DB', textAlign: 'center', fontWeight: 'semibold', fontSize: 20 }}>,United Kingdom</Text>
+          </Text>
+          <View style={{ flexDirection: 'row', justifyContent:'center',}}>
+            <Image style={{width: 100, height:100}}
+              source={require('../assets/images/partlycloudy.png')}
+            />
+          </View>
+          <View style={{marginVertical: 8}}>
+            <Text style={{textAlign:'center', 
+            fontWeight: 'bold', 
+            color: 'white',
+            fontSize: 40,
+            marginLeft:8
+            }}>
+              23&#176;
+            </Text>
+            <Text style={{textAlign:'center',  
+            color: 'white',
+            fontSize: 25,
+            letterSpacing:2,
+            marginLeft:8}}>partly cloudy
+            </Text>
+            <View style={{flexDirection:'row', justifyContent:'space-between',marginHorizontal:10,}}>
+              <View style={{flexDirection:'row',marginHorizontal:10, alignItems:'center', marginTop:40,}}>
+                <Image
+                  source={require('../assets/icons/wind.png')}
+                  style={{height:20, width:20,marginHorizontal:10}}
+                />
+                <Text style={{color:'white', fontWeight:'800'}}>22km</Text>
+              </View>
+              <View style={{flexDirection:'row',marginHorizontal:10, alignItems:'center', marginTop:40,}}>
+                <Image
+                  source={require('../assets/icons/drop.png')}
+                  style={{height:20, width:20,marginHorizontal:10}}
+                />
+                <Text style={{color:'white', fontWeight:'800'}}>34%</Text>
+              </View>
+              <View style={{flexDirection:'row',marginHorizontal:10, alignItems:'center', marginTop:40,marginHorizontal:20}}>
+                <Image
+                  source={require('../assets/icons/sun.png')}
+                  style={{height:20, width:20,marginHorizontal:10}}
+                />
+                <Text style={{color:'white', fontWeight:'800'}}>6:05 AM</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View style={{marginBottom:25,}}>
+            <View style={{flexDirection:'row', alignItems:'center', marginHorizontal:10,}}>
+              <CalendarDaysIcon size={44} color={'white'}/>
+              <Text style={{color:'white',fontSize: 16,fontWeight: 'bold',}}>Daily forecast</Text>
+            </View>
+            <ScrollView horizontal contentContainerStyle={{paddingHorizontal:15}}
+              showsHorizontalScrollIndicator={false}
+            >
+              <View style={{justifyContent:'center', 
+              alignItems:'center', 
+              display:'flex', 
+              width:78, borderRadius:10, 
+              paddingVertical:10, marginRight:10, backgroundColor:'rgba(255, 255, 255, 0.5)', marginTop:10}}
+              >
+                <Image source={require('../assets/images/heavyrain.png')}
+                  style={{height:30, width:30}}
+                />
+                <Text style={{color:'white'}}>Monday</Text>
+                <Text style={{color:'white', fontWeight:'800', fontSize:24}}>17&#176;</Text>
+              </View>
+              <View style={{justifyContent:'center', 
+              alignItems:'center', 
+              display:'flex', 
+              width:78, borderRadius:10, 
+              paddingVertical:10, marginRight:10, backgroundColor:'rgba(255, 255, 255, 0.5)', marginTop:10}}
+              >
+                <Image source={require('../assets/images/heavyrain.png')}
+                  style={{height:30, width:30}}
+                />
+                <Text style={{color:'white'}}>Tuesday</Text>
+                <Text style={{color:'white', fontWeight:'800', fontSize:24}}>17&#176;</Text>
+              </View>
+              <View style={{justifyContent:'center', 
+              alignItems:'center', 
+              display:'flex', 
+              width:78, borderRadius:10, 
+              paddingVertical:10, marginRight:10, backgroundColor:'rgba(255, 255, 255, 0.5)', marginTop:10}}
+              >
+                <Image source={require('../assets/images/heavyrain.png')}
+                  style={{height:30, width:30}}
+                />
+                <Text style={{color:'white'}}>Wednesday</Text>
+                <Text style={{color:'white', fontWeight:'800', fontSize:24}}>17&#176;</Text>
+              </View>
+              <View style={{justifyContent:'center', 
+              alignItems:'center', 
+              display:'flex', 
+              width:78, borderRadius:10, 
+              paddingVertical:10, marginRight:10, backgroundColor:'rgba(255, 255, 255, 0.5)', marginTop:10}}
+              >
+                <Image source={require('../assets/images/heavyrain.png')}
+                  style={{height:30, width:30}}
+                />
+                <Text style={{color:'white'}}>Thursday</Text>
+                <Text style={{color:'white', fontWeight:'800', fontSize:24}}>17&#176;</Text>
+              </View>
+              <View style={{justifyContent:'center', 
+              alignItems:'center', 
+              display:'flex', 
+              width:78, borderRadius:10, 
+              paddingVertical:10, marginRight:10, backgroundColor:'rgba(255, 255, 255, 0.5)', marginTop:10}}
+              >
+                <Image source={require('../assets/images/heavyrain.png')}
+                  style={{height:30, width:30}}
+                />
+                <Text style={{color:'white'}}>Friday</Text>
+                <Text style={{color:'white', fontWeight:'800', fontSize:24}}>17&#176;</Text>
+              </View>
+              <View style={{justifyContent:'center', 
+              alignItems:'center', 
+              display:'flex', 
+              width:78, borderRadius:10, 
+              paddingVertical:10, marginRight:10, backgroundColor:'rgba(255, 255, 255, 0.5)', marginTop:10}}
+              >
+                <Image source={require('../assets/images/heavyrain.png')}
+                  style={{height:30, width:30}}
+                />
+                <Text style={{color:'white'}}>Saturday</Text>
+                <Text style={{color:'white', fontWeight:'800', fontSize:24}}>17&#176;</Text>
+              </View>
+              <View style={{justifyContent:'center', 
+              alignItems:'center', 
+              display:'flex', 
+              width:78, borderRadius:10, 
+              paddingVertical:10, marginRight:10, backgroundColor:'rgba(255, 255, 255, 0.5)', marginTop:10}}
+              >
+                <Image source={require('../assets/images/heavyrain.png')}
+                  style={{height:30, width:30}}
+                />
+                <Text style={{color:'white'}}>Sunday</Text>
+                <Text style={{color:'white', fontWeight:'800', fontSize:24}}>17&#176;</Text>
+              </View>
+            </ScrollView>
+        </View>
       </SafeAreaView>
-    </View>
+    </View>    
   );
 }
 
@@ -73,15 +213,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: "relative",
-    width:'100%'
+    width:'100%',
+    backgroundColor:'#3a4c40'
   },
   StatusBar: {
     backgroundColor: "ligth",
-  },
-  backgroundImage: {
-    position: "absolute",
-    height: "100%",
-    width: "100%",
   },
   safeAreaView: {
     flex: 1,
@@ -132,5 +268,12 @@ const styles = StyleSheet.create({
   },
   Textsearch:{
     color: "black",
-  }
+  },
+  ForecastSection:{
+    flex: 1,
+    marginHorizontal: 4,
+    flexDirection: 'column',
+    justifyContent:'space-evenly',
+    marginBottom: 4
+  },
 });
