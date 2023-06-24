@@ -14,7 +14,10 @@ import {MapIcon} from 'react-native-heroicons/solid'
 
 export default function HomeScreen() {
   const [showSearch, toggleSearch] = useState(false);
-  const [locations, setLocations] = useState([1,2,3])
+  const [locations, setLocations] = useState([1,2,3]);
+  const handleLocation = (loc)=>{
+    console.log('location: ',loc)
+  }
   return (
     <View style={styles.container}>
       <StatusBar style={styles.StatusBar} />
@@ -44,13 +47,16 @@ export default function HomeScreen() {
             <View style={styles.Location}>
               {
                 locations.map((loc, index)=> {
+                  let showBorder = index+1 !== locations.length;
+                  let borderClass = showBorder? { borderColor: '#D1D5DB', borderBottomWidth: 2, } : {};
                   return(
                     <TouchableOpacity
+                    onPress={()=>handleLocation(loc)}
                     key={index}
-                    style={styles.Location1}
+                    style={[styles.Location1, borderClass]}
                     >
-                      <MapIcon size={20} color={'gray'} padding={3} style={{ marginRight: 10 }}/>
-                      <Text>London, United Kingdom</Text>
+                      <MapIcon size={20} color={'gray'} padding={3} style={{ marginHorizontal: 10 }}/>
+                      <Text style={[styles.Textsearch, { fontSize: 20 }]}>London, United Kingdom</Text>
                     </TouchableOpacity>
                   )
                 })
@@ -119,12 +125,12 @@ const styles = StyleSheet.create({
   Location1:{
     flexDirection:'row',
     alignItems:'center',
-    paddingHorizontal: 6,
     paddingVertical: 10,
     marginHorizontal: 4,
     marginRight: 8,
-    borderBottomColor: '#D1D5DB',
-    borderBottomWidth: 1,
     borderStyle: 'solid',
+  },
+  Textsearch:{
+    color: "black",
   }
 });
