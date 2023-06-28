@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   View,
   Text,
@@ -17,13 +17,19 @@ import {
   MagnifyingGlassIcon,
 } from "react-native-heroicons/outline";
 import { MapIcon } from "react-native-heroicons/solid";
+import {debounce} from 'lodash'
 
 export default function HomeScreen() {
   const [showSearch, toggleSearch] = useState(false);
   const [locations, setLocations] = useState([1, 2, 3]);
   const handleLocation = (loc) => {
     console.log("location: ", loc);
-  };
+  }
+  const handleSearch = value=>{
+    console.log('value:', value)
+  }
+  const handleTextDebounce = useCallback(debounce(handleSearch, 1100))
+  
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style={styles.StatusBar} />
@@ -39,6 +45,7 @@ export default function HomeScreen() {
           >
             {showSearch ? (
               <TextInput
+                onChangeText={handleTextDebounce}
                 placeholder="Search city"
                 placeholderTextColor={"white"}
                 style={styles.searchInput}
